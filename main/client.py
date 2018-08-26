@@ -2,23 +2,22 @@ import requests
 import os
 
 
-KEY = os.environ['YOUTUBE_API_KEY']
-BASE_URL = 'https://www.googleapis.com/youtube/v3'
-video_id = 'G25nLDc0o44'
+key = os.environ['YOUTUBE_API_KEY']
+base_url = 'https://www.googleapis.com/youtube/v3'
 max_results = 100
 
 
 def get_comment_threads(video_id, next_page_token=None):
     """Retreives comments for a given video_id"""
     params = dict({
-        'key': KEY,
+        'key': key,
         'textFormat': 'plainText',
         'part': 'snippet,replies',
         'pageToken': next_page_token,
         'maxResults': max_results,
         'videoId': video_id
     })
-    url = "/".join([BASE_URL,'commentThreads'])
+    url = "/".join([base_url,'commentThreads'])
     response = requests.get(url, params=params)
     return response.json()
 
@@ -43,7 +42,7 @@ def traverse_thread_list(comment_thread_list):
                 extract_comment(reply)
         
 
-def main(video_id):
+def get_video_comments(video_id):
     match = get_comment_threads(video_id)
     if "nextPageToken" not in match:
         traverse_thread_list(match)
@@ -52,6 +51,3 @@ def main(video_id):
             traverse_thread_list(match)
             next_page_token = match["nextPageToken"]
             match = get_comment_threads(video_id, next_page_token)
-
-
-main(video_id)
