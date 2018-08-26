@@ -7,3 +7,4 @@
 **/include
 *.json
 *.txt
+*__pycache__
