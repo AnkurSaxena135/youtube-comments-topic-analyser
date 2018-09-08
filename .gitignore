@@ -8,3 +8,5 @@
 *.json
 *.txt
 *__pycache__
+vars.py
+.ipynb_checkpoints/

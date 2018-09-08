@@ -1,5 +1,8 @@
-from extract import get_video_comments
+from CommentExtractor import CommentExtractor
 
-VIDEO_ID = 'JDjTJ6lkb-8'
+vid_lsd = 'JDjTJ6lkb-8'
+vid_sma = 'G25nLDc0o44'
+file_lsd = "comments_lsd.txt"
 
-get_video_comments(VIDEO_ID)
+comment_extractor = CommentExtractor()
+comment_extractor.get_video_comments(vid_sma, file_lsd)
